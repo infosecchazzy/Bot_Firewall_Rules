@@ -59,15 +59,15 @@ def bot_firewall_rules(pcap_file):
                 ip_src_list.append(each_packet[IP].src)
 
                 ## print firewall rules
-                rule_head = "iptables --append INPUT"
-                rule_body = " -- source " + each_packet[IP].src + "/32"
-                rule_tail = " -- jump DROP"
+                rule_head = "iptables --A INPUT"
+                rule_body = " -- s " + each_packet[IP].src + "/32"
+                rule_tail = " -- j DROP"
 
                 ## print rule 1
                 print rule_head + rule_body + rule_tail
 
                 ## print rule 2
-                rule_body = "--mac-source " + packet[Ether].src
+                rule_body = " --mac-source " + packet[Ether].src
                 print rule_head + rule_body + rule_tail
     
     return 0
