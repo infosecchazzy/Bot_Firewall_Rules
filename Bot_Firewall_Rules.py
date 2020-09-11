@@ -60,8 +60,8 @@ def bot_firewall_rules(pcap_file):
 
                 ## print firewall rules
                 rule_head = "iptables --A INPUT"
-                rule_body = " -- s " + each_packet[IP].src + "/32"
-                rule_tail = " -- j DROP"
+                rule_body = " --s " + each_packet[IP].src + "/32"
+                rule_tail = " --j DROP"
 
                 ## print rule 1
                 print rule_head + rule_body + rule_tail
